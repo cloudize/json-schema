@@ -1,7 +1,7 @@
 import { Schema } from 'jsonschema';
 import { JsonSchemaDefinition } from '../../index';
 
-export default class GeolocationPointSchemaDefinition extends JsonSchemaDefinition {
+const GeolocationPointSchemaDefinition: JsonSchemaDefinition = class {
     static schemaName = (): string => '/core.geolocation.point.schema'
 
     static schemaDefinition = (): Schema => ({
@@ -39,3 +39,5 @@ export default class GeolocationPointSchemaDefinition extends JsonSchemaDefiniti
       required: ['type', 'coordinates'],
     })
 }
+
+export default GeolocationPointSchemaDefinition;

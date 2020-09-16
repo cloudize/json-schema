@@ -4,7 +4,7 @@ import { JsonSchemaDefinition } from '../../index';
 // eslint-disable-next-line max-len
 const regex = /^[{]{0,1}[0-9a-fA-F]{8}[-]{0,1}[0-9a-fA-F]{4}[-]{0,1}[0-9a-fA-F]{4}[-]{0,1}[0-9a-fA-F]{4}[-]{0,1}[0-9a-fA-F]{12}[}]{0,1}$/;
 
-export default class UuidSchemaDefinition extends JsonSchemaDefinition {
+const UuidSchemaDefinition: JsonSchemaDefinition = class {
     static schemaName = (): string => '/core.uuid.schema';
 
     static schemaDefinition(): Schema {
@@ -20,3 +20,5 @@ export default class UuidSchemaDefinition extends JsonSchemaDefinition {
       };
     }
 }
+
+export default UuidSchemaDefinition;

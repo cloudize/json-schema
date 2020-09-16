@@ -3,7 +3,7 @@ import { JsonSchemaDefinition } from '../../index';
 
 const regex = /[a-fA-F0-9]{24}/;
 
-export default class MongodbObjectidSchemaDefinition extends JsonSchemaDefinition {
+const MongodbObjectidSchemaDefinition: JsonSchemaDefinition = class {
     static schemaName = (): string => '/core.mongodb.objectid.schema'
 
     static schemaDefinition = (): Schema => ({
@@ -17,3 +17,5 @@ export default class MongodbObjectidSchemaDefinition extends JsonSchemaDefinitio
       pattern: regex,
     })
 }
+
+export default MongodbObjectidSchemaDefinition;

@@ -1,7 +1,7 @@
 import { Schema } from 'jsonschema';
 import { JsonSchemaDefinition } from '../../index';
 
-export default class DatetimeSchemaDefinition extends JsonSchemaDefinition {
+const DatetimeSchemaDefinition: JsonSchemaDefinition = class {
     static schemaName = (): string => '/core.datetime.schema'
 
     static schemaDefinition = (): Schema => ({
@@ -24,3 +24,5 @@ export default class DatetimeSchemaDefinition extends JsonSchemaDefinition {
         + '(Z|(-(((0[0-9]|1[0-1])[:]?[0-5][0-9])|(12[:]?00)))|(\\+(((0[0-9]|1[0-3])[:]?[0-5][0-9])|(14[:]?00))))$',
     });
 }
+
+export default DatetimeSchemaDefinition;
