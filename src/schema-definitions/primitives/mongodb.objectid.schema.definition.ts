@@ -1,9 +1,9 @@
 import { Schema } from 'jsonschema';
-import { JsonSchemaDefinition } from '../../index';
+import { IJsonSchemaDefinition } from '../../index';
 
 const regex = /[a-fA-F0-9]{24}/;
 
-const MongodbObjectidSchemaDefinition: JsonSchemaDefinition = class {
+const MongodbObjectidSchemaDefinition: IJsonSchemaDefinition = class {
     static schemaName = (): string => '/core.mongodb.objectid.schema'
 
     static schemaDefinition = (): Schema => ({

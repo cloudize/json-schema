@@ -1,3 +1,3 @@
-import { JsonSchemaDefinition } from '../../index';
-declare const IpAddressSchemaDefinition: JsonSchemaDefinition;
+import { IJsonSchemaDefinition } from '../../index';
+declare const IpAddressSchemaDefinition: IJsonSchemaDefinition;
 export default IpAddressSchemaDefinition;

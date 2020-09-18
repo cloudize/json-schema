@@ -1,3 +1,3 @@
-import { JsonSchemaDefinition } from '../../index';
-declare const DatetimeSchemaDefinition: JsonSchemaDefinition;
+import { IJsonSchemaDefinition } from '../../index';
+declare const DatetimeSchemaDefinition: IJsonSchemaDefinition;
 export default DatetimeSchemaDefinition;

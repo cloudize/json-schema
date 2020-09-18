@@ -1,9 +1,9 @@
 import { Schema, ValidatorResult } from 'jsonschema';
 import { JsonElementType } from '@apigames/json';
 
-export type setupSchemaDependenciesFunction = (schemaDefinition: JsonSchemaDefinition) => void;
+export type setupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefinition) => void;
 
-export interface JsonSchemaDefinition {
+export interface IJsonSchemaDefinition {
   schemaName(): string;
   setupSchemaDependencies?(registerSchemaFunction: setupSchemaDependenciesFunction): void;
   schemaDefinition(): Schema;

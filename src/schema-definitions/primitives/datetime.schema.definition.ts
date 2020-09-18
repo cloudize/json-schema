@@ -1,7 +1,7 @@
 import { Schema } from 'jsonschema';
-import { JsonSchemaDefinition } from '../../index';
+import { IJsonSchemaDefinition } from '../../index';
 
-const DatetimeSchemaDefinition: JsonSchemaDefinition = class {
+const DatetimeSchemaDefinition: IJsonSchemaDefinition = class {
     static schemaName = (): string => '/core.datetime.schema'
 
     static schemaDefinition = (): Schema => ({

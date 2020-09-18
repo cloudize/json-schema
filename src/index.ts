@@ -1,4 +1,4 @@
-export { JsonSchemaDefinition, JsonSchemaValidator, setupSchemaDependenciesFunction } from './validator';
+export { IJsonSchemaDefinition, JsonSchemaValidator } from './validator';
 
 export {
   DatetimeSchemaDefinition,

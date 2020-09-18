@@ -1,30 +1,27 @@
-import {
-  ValidationError,
-  Validator,
-} from 'jsonschema';
+import { ValidationError, Validator } from 'jsonschema';
 import { JsonElementType } from '@apigames/json';
-import type { JsonSchemaDefinition, setupSchemaDependenciesFunction } from './json.schema.definition';
+import type { IJsonSchemaDefinition, setupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
     private _validator: Validator = undefined;
 
     private _validationErrors: ValidationError[] = undefined;
 
-    setupSchemaDependencies = (jsonSchemaDefinition: JsonSchemaDefinition) => {
-      if (jsonSchemaDefinition.setupSchemaDependencies) {
+    setupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition) => {
+      if (schemaDefinition.setupSchemaDependencies) {
         const setupSchemaDependencyFunction: setupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
-        jsonSchemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
+        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
       }
 
-      const schemaDefinition = jsonSchemaDefinition.schemaDefinition();
+      const _schemaDefinition = schemaDefinition.schemaDefinition();
 
-      this.validator.addSchema(schemaDefinition, jsonSchemaDefinition.schemaName());
+      this.validator.addSchema(_schemaDefinition, schemaDefinition.schemaName());
     }
 
-    setupSchema = (jsonSchemaDefinition: JsonSchemaDefinition) => {
-      if (jsonSchemaDefinition.setupSchemaDependencies) {
+    setupSchema = (schemaDefinition: IJsonSchemaDefinition) => {
+      if (schemaDefinition.setupSchemaDependencies) {
         const setupSchemaDependencyFunction: setupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
-        jsonSchemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
+        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
       }
     }
 
@@ -45,7 +42,7 @@ export default class JsonSchemaValidator {
       return this._validator;
     }
 
-    validate = (payloadDocument: JsonElementType, jsonSchemaDefinition: JsonSchemaDefinition) => {
+    validate = (payloadDocument: JsonElementType, schemaDefinition: IJsonSchemaDefinition) => {
       this._validationErrors = undefined;
       if (!payloadDocument) {
         this._validationErrors = [new ValidationError('The payload was empty.')];
@@ -53,14 +50,14 @@ export default class JsonSchemaValidator {
       }
 
       this.setupValidator();
-      this.setupSchema(jsonSchemaDefinition);
+      this.setupSchema(schemaDefinition);
 
-      const schemaDefinition = jsonSchemaDefinition.schemaDefinition();
+      const _schemaDefinition = schemaDefinition.schemaDefinition();
 
-      const validationResult = this.validator.validate(payloadDocument, schemaDefinition);
+      const validationResult = this.validator.validate(payloadDocument, _schemaDefinition);
 
-      if ((validationResult.valid) && (jsonSchemaDefinition.postSchemaValidation)) {
-        jsonSchemaDefinition.postSchemaValidation(payloadDocument, validationResult);
+      if ((validationResult.valid) && (schemaDefinition.postSchemaValidation)) {
+        schemaDefinition.postSchemaValidation(payloadDocument, validationResult);
       }
 
       if (!validationResult.valid) {

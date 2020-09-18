@@ -1,2 +1,2 @@
-export { JsonSchemaDefinition, setupSchemaDependenciesFunction } from './json.schema.definition';
+export { IJsonSchemaDefinition } from './json.schema.definition';
 export { default as JsonSchemaValidator } from './json.schema.validator';

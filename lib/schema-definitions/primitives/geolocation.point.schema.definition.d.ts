@@ -1,3 +1,3 @@
-import { JsonSchemaDefinition } from '../../index';
-declare const GeolocationPointSchemaDefinition: JsonSchemaDefinition;
+import { IJsonSchemaDefinition } from '../../index';
+declare const GeolocationPointSchemaDefinition: IJsonSchemaDefinition;
 export default GeolocationPointSchemaDefinition;

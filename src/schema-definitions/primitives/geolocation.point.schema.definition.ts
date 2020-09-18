@@ -1,7 +1,7 @@
 import { Schema } from 'jsonschema';
-import { JsonSchemaDefinition } from '../../index';
+import { IJsonSchemaDefinition } from '../../index';
 
-const GeolocationPointSchemaDefinition: JsonSchemaDefinition = class {
+const GeolocationPointSchemaDefinition: IJsonSchemaDefinition = class {
     static schemaName = (): string => '/core.geolocation.point.schema'
 
     static schemaDefinition = (): Schema => ({

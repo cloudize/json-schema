@@ -1,15 +1,15 @@
 import { JsonElementType } from '@apigames/json';
 import { Schema, ValidatorResult } from 'jsonschema';
 import {
-  JsonSchemaDefinition,
+  IJsonSchemaDefinition,
   JsonSchemaValidator,
-  setupSchemaDependenciesFunction,
   UuidSchemaDefinition,
-  IpAddressSchemaDefinition
+  IpAddressSchemaDefinition,
 } from '../../../src';
+import { setupSchemaDependenciesFunction } from '../../../src/validator/json.schema.definition';
 
 // eslint-disable-next-line import/prefer-default-export
-const TestSourceSchemaDefinition: JsonSchemaDefinition = class {
+const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
   static schemaName = (): string => '/test.source.schema';
 
   static setupSchemaDependencies(registerSchemaFunction: setupSchemaDependenciesFunction): void {
@@ -31,7 +31,7 @@ const TestSourceSchemaDefinition: JsonSchemaDefinition = class {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-const TestSchemaDefinition: JsonSchemaDefinition = class {
+const TestSchemaDefinition: IJsonSchemaDefinition = class {
   static schemaName = (): string => '/test.schema';
 
   static setupSchemaDependencies(registerSchemaFunction: setupSchemaDependenciesFunction): void {

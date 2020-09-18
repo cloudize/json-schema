@@ -1,3 +1,3 @@
-import { JsonSchemaDefinition } from '../../index';
-declare const EmailAddressSchemaDefinition: JsonSchemaDefinition;
+import { IJsonSchemaDefinition } from '../../index';
+declare const EmailAddressSchemaDefinition: IJsonSchemaDefinition;
 export default EmailAddressSchemaDefinition;

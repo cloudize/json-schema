@@ -1,3 +1,3 @@
-import { JsonSchemaDefinition } from '../../index';
-declare const UrlSchemaDefinition: JsonSchemaDefinition;
+import { IJsonSchemaDefinition } from '../../index';
+declare const UrlSchemaDefinition: IJsonSchemaDefinition;
 export default UrlSchemaDefinition;

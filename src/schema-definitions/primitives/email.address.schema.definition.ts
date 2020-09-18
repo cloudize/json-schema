@@ -1,10 +1,10 @@
 import { Schema } from 'jsonschema';
-import { JsonSchemaDefinition } from '../../index';
+import { IJsonSchemaDefinition } from '../../index';
 
 // eslint-disable-next-line max-len
 const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(?![-.])((\[?[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}]?)|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})|(([a-zA-Z\-0-9]+){2,}))$/ig;
 
-const EmailAddressSchemaDefinition: JsonSchemaDefinition = class {
+const EmailAddressSchemaDefinition: IJsonSchemaDefinition = class {
     static schemaName = (): string => '/core.email.address.schema'
 
     static schemaDefinition = (): Schema => ({
