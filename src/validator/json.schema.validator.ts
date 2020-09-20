@@ -1,5 +1,4 @@
 import { ValidationError, Validator } from 'jsonschema';
-import { JsonElementType } from '@apigames/json';
 import type { IJsonSchemaDefinition, setupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
@@ -42,7 +41,7 @@ export default class JsonSchemaValidator {
       return this._validator;
     }
 
-    validate = (payloadDocument: JsonElementType, schemaDefinition: IJsonSchemaDefinition) => {
+    validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition) => {
       this._validationErrors = undefined;
       if (!payloadDocument) {
         this._validationErrors = [new ValidationError('The payload was empty.')];

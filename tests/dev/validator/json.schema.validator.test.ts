@@ -1,4 +1,3 @@
-import { JsonElementType } from '@apigames/json';
 import { Schema, ValidatorResult } from 'jsonschema';
 import {
   IJsonSchemaDefinition,
@@ -54,7 +53,7 @@ const TestSchemaDefinition: IJsonSchemaDefinition = class {
     required: [ 'id', 'name', 'source' ]
   })
 
-  static postSchemaValidation(payloadDocument: JsonElementType, validationResult: ValidatorResult): void {};
+  static postSchemaValidation(payloadDocument: any, validationResult: ValidatorResult): void {};
 }
 
 describe('The Test Schema Validator', () => {

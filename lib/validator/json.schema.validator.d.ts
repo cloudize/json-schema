@@ -1,5 +1,4 @@
 import { ValidationError, Validator } from 'jsonschema';
-import { JsonElementType } from '@apigames/json';
 import type { IJsonSchemaDefinition } from './json.schema.definition';
 export default class JsonSchemaValidator {
     private _validator;
@@ -10,5 +9,5 @@ export default class JsonSchemaValidator {
     teardownValidator: () => void;
     get validationErrors(): ValidationError[];
     get validator(): Validator;
-    validate: (payloadDocument: JsonElementType, schemaDefinition: IJsonSchemaDefinition) => boolean;
+    validate: (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition) => boolean;
 }
