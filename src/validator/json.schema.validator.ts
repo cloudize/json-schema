@@ -1,5 +1,5 @@
 import { ValidationError, Validator } from 'jsonschema';
-import type { IJsonSchemaDefinition, setupSchemaDependenciesFunction } from './json.schema.definition';
+import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
     private _validator: Validator = undefined;
@@ -8,7 +8,7 @@ export default class JsonSchemaValidator {
 
     setupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition) => {
       if (schemaDefinition.setupSchemaDependencies) {
-        const setupSchemaDependencyFunction: setupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
+        const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
         schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
       }
 
@@ -19,7 +19,7 @@ export default class JsonSchemaValidator {
 
     setupSchema = (schemaDefinition: IJsonSchemaDefinition) => {
       if (schemaDefinition.setupSchemaDependencies) {
-        const setupSchemaDependencyFunction: setupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
+        const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
         schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
       }
     }

@@ -1,8 +1,8 @@
 import { Schema, ValidatorResult } from 'jsonschema';
-export declare type setupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefinition) => void;
+export declare type SetupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefinition) => void;
 export interface IJsonSchemaDefinition {
     schemaName(): string;
-    setupSchemaDependencies?(registerSchemaFunction: setupSchemaDependenciesFunction): void;
+    setupSchemaDependencies?(registerSchemaFunction: SetupSchemaDependenciesFunction): void;
     schemaDefinition(): Schema;
     postSchemaValidation?(payloadDocument: any, validationResult: ValidatorResult): void;
 }
