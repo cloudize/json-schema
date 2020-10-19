@@ -1,3 +1,5 @@
+export { Schema as JsonSchema } from 'jsonschema';
+
 export { IJsonSchemaDefinition, JsonSchemaValidator, SetupSchemaDependenciesFunction } from './validator';
 
 export {
