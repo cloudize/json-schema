@@ -5,13 +5,13 @@ import {
   UuidSchemaDefinition,
   IpAddressSchemaDefinition
 } from '../../../../lib';
-import { setupSchemaDependenciesFunction } from '../../../../lib/validator/json.schema.definition';
+import { SetupSchemaDependenciesFunction } from '../../../../lib/validator/json.schema.definition';
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
   static schemaName = (): string => '/test.source.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction: setupSchemaDependenciesFunction): void {
+  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction): void {
     registerSchemaFunction(IpAddressSchemaDefinition);
   };
 
@@ -33,7 +33,7 @@ const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
 const TestSchemaDefinition: IJsonSchemaDefinition = class {
   static schemaName = (): string => '/test.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction: setupSchemaDependenciesFunction): void {
+  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction): void {
     registerSchemaFunction(UuidSchemaDefinition);
     registerSchemaFunction(TestSourceSchemaDefinition);
   };
