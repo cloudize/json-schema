@@ -1,4 +1,4 @@
-export { Schema as JsonSchema } from 'jsonschema';
+export { Schema as JsonSchema, ValidationError as JsonSchemaValidationError } from 'jsonschema';
 
 export { IJsonSchemaDefinition, JsonSchemaValidator, SetupSchemaDependenciesFunction } from './validator';
 
