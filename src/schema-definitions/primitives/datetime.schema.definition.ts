@@ -13,15 +13,25 @@ const DatetimeSchemaDefinition: IJsonSchemaDefinition = class {
       minLength: 22,
       maxLength: 29,
       pattern: '^([1-2][0-9]{3})' // year
-        + '(-((0[1-9])|(1[0-2])))' // month
-        + '(-((0[1-9])|([1-2][0-9])|(3[0-1])))' // day
-        + '(T)' // beginning of a time section
-        + '((([0-1][0-9])|(2[0-3])):)' // hours
-        + '([0-5][0-9]:)' // minutes
+        + '(-)' // date separator
+        + '((0[1-9])|(1[0-2]))' // month
+        + '(-)' // date separator
+        + '((0[1-9])|([1-2][0-9])|(3[0-1]))' // day
+        + '(T)' // date time separator
+        + '(([0-1][0-9])|(2[0-3]))' // hours
+        + '(:)' // time separator
+        + '([0-5][0-9])' // minutes
+        + '(:)' // time separator
         + '([0-5][0-9])' // seconds
-        + '(\\.[0-9]{1,3})' // milliseconds
-        // timezone (Z or -12:00 to +14:00)
-        + '(Z|(-(((0[0-9]|1[0-1])[:]?[0-5][0-9])|(12[:]?00)))|(\\+(((0[0-9]|1[0-3])[:]?[0-5][0-9])|(14[:]?00))))$',
+        + '(\\.)' // millisecond separator
+        + '([0-9]{1,3})' // milliseonds
+        + '('
+        + '(Z)' // UTC Indicator
+        + '|'
+        + '(-(((0[0-9]|1[0-1])[:]?[0-5][0-9])|(12[:]?00)))' // Western Timezones
+        + '|'
+        + '(\\+(((0[0-9]|1[0-3])[:]?[0-5][0-9])|(14[:]?00)))' // Eastern Timezones
+        + ')$'
     });
 }
 
