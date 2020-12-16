@@ -60,18 +60,6 @@ describe('System Type IP Address validator', () => {
       expect(payloadValidator.validationErrors).toBeDefined();
     });
 
-    it('01.1.1.1', () => {
-      const payloadValidator = new JsonSchemaValidator();
-      expect(payloadValidator.validate('01.1.1.1', IpAddressSchemaDefinition)).toBe(false);
-      expect(payloadValidator.validationErrors).toBeDefined();
-    });
-
-    it('1.1.1.01', () => {
-      const payloadValidator = new JsonSchemaValidator();
-      expect(payloadValidator.validate('1.1.1.01', IpAddressSchemaDefinition)).toBe(false);
-      expect(payloadValidator.validationErrors).toBeDefined();
-    });
-
     it('3...3', () => {
       const payloadValidator = new JsonSchemaValidator();
       expect(payloadValidator.validate('3...3', IpAddressSchemaDefinition)).toBe(false);
@@ -161,6 +149,18 @@ describe('System Type IP Address validator', () => {
     it('127.0.0.1', () => {
       const payloadValidator = new JsonSchemaValidator();
       expect(payloadValidator.validate('127.0.0.1', IpAddressSchemaDefinition)).toBe(true);
+      expect(payloadValidator.validationErrors).toBeUndefined();
+    });
+
+    it('01.1.1.1', () => {
+      const payloadValidator = new JsonSchemaValidator();
+      expect(payloadValidator.validate('01.1.1.1', IpAddressSchemaDefinition)).toBe(true);
+      expect(payloadValidator.validationErrors).toBeUndefined();
+    });
+
+    it('1.1.1.01', () => {
+      const payloadValidator = new JsonSchemaValidator();
+      expect(payloadValidator.validate('1.1.1.01', IpAddressSchemaDefinition)).toBe(true);
       expect(payloadValidator.validationErrors).toBeUndefined();
     });
 

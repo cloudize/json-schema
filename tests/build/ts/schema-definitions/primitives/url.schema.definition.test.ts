@@ -180,12 +180,6 @@ describe('The URI validator', () => {
       expect(payloadValidator.validationErrors).toBeDefined();
     });
 
-    it('http://0.0.0.0', () => {
-      const payloadValidator = new JsonSchemaValidator();
-      expect(payloadValidator.validate('http://0.0.0.0', UrlSchemaDefinition)).toBe(false);
-      expect(payloadValidator.validationErrors).toBeDefined();
-    });
-
     it('http://10.1.1.0', () => {
       const payloadValidator = new JsonSchemaValidator();
       expect(payloadValidator.validate('http://10.1.1.0', UrlSchemaDefinition)).toBe(false);
