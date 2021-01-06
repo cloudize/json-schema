@@ -5,12 +5,12 @@ import { IJsonSchemaDefinition } from '../../index';
 const regex = /^[{]{0,1}[0-9a-fA-F]{8}[-]{0,1}[0-9a-fA-F]{4}[-]{0,1}[0-9a-fA-F]{4}[-]{0,1}[0-9a-fA-F]{4}[-]{0,1}[0-9a-fA-F]{12}[}]{0,1}$/;
 
 const UuidSchemaDefinition: IJsonSchemaDefinition = class {
-    static schemaName = (): string => '/core.uuid.schema';
+    static schemaName = (context: any): string => '/core.uuid.schema';
 
-    static schemaDefinition(): Schema {
+    static schemaDefinition(context: any): Schema {
       return {
         $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-        id: UuidSchemaDefinition.schemaName(),
+        id: UuidSchemaDefinition.schemaName(context),
         title: 'Schema for a UUID',
         description: 'Schema for use in the validation of a UUID',
         type: 'string',

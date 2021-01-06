@@ -12,22 +12,22 @@ let TestSourceSchemaDefinitionContext = undefined;
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
-  static schemaName = (): string => '/test.source.schema';
+  static schemaName = (context: any): string => '/test.source.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction): void {
-    registerSchemaFunction(IpAddressSchemaDefinition);
+  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
+    registerSchemaFunction(IpAddressSchemaDefinition, context);
   };
 
   static schemaDefinition = (context: any): Schema => {
     TestSourceSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: TestSourceSchemaDefinition.schemaName(),
+      id: TestSourceSchemaDefinition.schemaName(context),
       title: 'Test Source Schema Definition',
       description: 'This class sets up an embedded schema definition for testing',
       type: 'object',
       properties: {
-        ipAddress: { $ref: IpAddressSchemaDefinition.schemaName() }
+        ipAddress: { $ref: IpAddressSchemaDefinition.schemaName(context) }
       },
       additionalProperties: false,
       required: [ 'ipAddress' ]
@@ -37,25 +37,25 @@ const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSchemaDefinition: IJsonSchemaDefinition = class {
-  static schemaName = (): string => '/test.schema';
+  static schemaName = (context: any): string => '/test.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction): void {
-    registerSchemaFunction(UuidSchemaDefinition);
-    registerSchemaFunction(TestSourceSchemaDefinition);
+  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
+    registerSchemaFunction(UuidSchemaDefinition, context);
+    registerSchemaFunction(TestSourceSchemaDefinition, context);
   };
 
   static schemaDefinition = (context: any): Schema => {
     TestSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: TestSchemaDefinition.schemaName(),
+      id: TestSchemaDefinition.schemaName(context),
       title: 'Test Schema Definition',
       description: 'This class sets up a complex schema definition for testing',
       type: 'object',
       properties: {
-        id: { $ref: UuidSchemaDefinition.schemaName() },
+        id: { $ref: UuidSchemaDefinition.schemaName(context) },
         name: { type: 'string' },
-        source: { $ref: TestSourceSchemaDefinition.schemaName() }
+        source: { $ref: TestSourceSchemaDefinition.schemaName(context) }
       },
       additionalProperties: false,
       required: [ 'id', 'name', 'source' ]

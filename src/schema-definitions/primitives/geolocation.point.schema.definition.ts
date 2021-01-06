@@ -2,11 +2,11 @@ import { Schema } from 'jsonschema';
 import { IJsonSchemaDefinition } from '../../index';
 
 const GeolocationPointSchemaDefinition: IJsonSchemaDefinition = class {
-    static schemaName = (): string => '/core.geolocation.point.schema'
+    static schemaName = (context: any): string => '/core.geolocation.point.schema'
 
-    static schemaDefinition = (): Schema => ({
+    static schemaDefinition = (context: any): Schema => ({
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: GeolocationPointSchemaDefinition.schemaName(),
+      id: GeolocationPointSchemaDefinition.schemaName(context),
       title: 'System GeoLocation Point Schema',
       description: '',
       type: 'object',

@@ -1,10 +1,10 @@
 import { Schema, ValidatorResult } from 'jsonschema';
 
-export type SetupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefinition) => void;
+export type SetupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefinition, context: any) => void;
 
 export interface IJsonSchemaDefinition {
-  schemaName(): string;
-  setupSchemaDependencies?(registerSchemaFunction: SetupSchemaDependenciesFunction): void;
+  schemaName(context: any): string;
+  setupSchemaDependencies?(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void;
   schemaDefinition(context: any): Schema;
-  postSchemaValidation?(payloadDocument: any, validationResult: ValidatorResult): void;
+  postSchemaValidation?(payloadDocument: any, validationResult: ValidatorResult, context: any): void;
 }

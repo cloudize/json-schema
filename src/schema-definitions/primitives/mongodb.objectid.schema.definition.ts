@@ -4,11 +4,11 @@ import { IJsonSchemaDefinition } from '../../index';
 const regex = /[a-fA-F0-9]{24}/;
 
 const MongodbObjectidSchemaDefinition: IJsonSchemaDefinition = class {
-    static schemaName = (): string => '/core.mongodb.objectid.schema'
+    static schemaName = (context: any): string => '/core.mongodb.objectid.schema'
 
-    static schemaDefinition = (): Schema => ({
+    static schemaDefinition = (context: any): Schema => ({
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: MongodbObjectidSchemaDefinition.schemaName(),
+      id: MongodbObjectidSchemaDefinition.schemaName(context),
       title: 'Schema for a MongoDB ObjectId',
       description: 'Schema for use in the validation of a MongoDB ObjectId',
       type: 'string',

@@ -3,27 +3,25 @@ import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './j
 import {isUndefined} from "@apigames/json";
 
 export default class JsonSchemaValidator {
-    private _context: any = undefined;
-
     private _validator: Validator = undefined;
 
     private _validationErrors: ValidationError[] = undefined;
 
-    setupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition) => {
+    setupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
       if (schemaDefinition.setupSchemaDependencies) {
         const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
-        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
+        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction, context);
       }
 
-      const _schemaDefinition = schemaDefinition.schemaDefinition(this._context);
+      const _schemaDefinition = schemaDefinition.schemaDefinition(context);
 
-      this.validator.addSchema(_schemaDefinition, schemaDefinition.schemaName());
+      this.validator.addSchema(_schemaDefinition, schemaDefinition.schemaName(context));
     }
 
-    setupSchema = (schemaDefinition: IJsonSchemaDefinition) => {
+    setupSchema = (schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
       if (schemaDefinition.setupSchemaDependencies) {
         const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
-        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
+        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction, context);
       }
     }
 
@@ -46,21 +44,20 @@ export default class JsonSchemaValidator {
 
     validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
       this._validationErrors = undefined;
-      this._context = context;
       if (isUndefined(payloadDocument)) {
         this._validationErrors = [new ValidationError('The payload was empty.')];
         return false;
       }
 
       this.setupValidator();
-      this.setupSchema(schemaDefinition);
+      this.setupSchema(schemaDefinition, context);
 
       const _schemaDefinition = schemaDefinition.schemaDefinition(context);
 
       const validationResult = this.validator.validate(payloadDocument, _schemaDefinition);
 
       if ((validationResult.valid) && (schemaDefinition.postSchemaValidation)) {
-        schemaDefinition.postSchemaValidation(payloadDocument, validationResult);
+        schemaDefinition.postSchemaValidation(payloadDocument, validationResult, context);
       }
 
       if (!validationResult.valid) {

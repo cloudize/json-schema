@@ -10,22 +10,22 @@ let TestSchemaDefinitionContext = undefined;
 let TestSourceSchemaDefinitionContext = undefined;
 
 const TestSourceSchemaDefinition = class {
-  static schemaName = () => '/test.source.schema';
+  static schemaName = (context) => '/test.source.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction) {
-    registerSchemaFunction(IpAddressSchemaDefinition);
+  static setupSchemaDependencies(registerSchemaFunction, context) {
+    registerSchemaFunction(IpAddressSchemaDefinition, context);
   };
 
   static schemaDefinition = (context) => {
     TestSourceSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-        id: TestSourceSchemaDefinition.schemaName(),
+        id: TestSourceSchemaDefinition.schemaName(context),
       title: 'Test Source Schema Definition',
       description: 'This class sets up an embedded schema definition for testing',
       type: 'object',
       properties: {
-      ipAddress: { $ref: IpAddressSchemaDefinition.schemaName() }
+      ipAddress: { $ref: IpAddressSchemaDefinition.schemaName(context) }
     },
       additionalProperties: false,
         required: [ 'ipAddress' ]
@@ -34,25 +34,25 @@ const TestSourceSchemaDefinition = class {
 }
 
 const TestSchemaDefinition = class {
-  static schemaName = () => '/test.schema';
+  static schemaName = (context) => '/test.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction) {
-    registerSchemaFunction(UuidSchemaDefinition);
-    registerSchemaFunction(TestSourceSchemaDefinition);
+  static setupSchemaDependencies(registerSchemaFunction, context) {
+    registerSchemaFunction(UuidSchemaDefinition, context);
+    registerSchemaFunction(TestSourceSchemaDefinition, context);
   };
 
   static schemaDefinition = (context) => {
     TestSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: TestSchemaDefinition.schemaName(),
+      id: TestSchemaDefinition.schemaName(context),
       title: 'Test Schema Definition',
       description: 'This class sets up a complex schema definition for testing',
       type: 'object',
       properties: {
-        id: { $ref: UuidSchemaDefinition.schemaName() },
+        id: { $ref: UuidSchemaDefinition.schemaName(context) },
         name: { type: 'string' },
-        source: { $ref: TestSourceSchemaDefinition.schemaName() }
+        source: { $ref: TestSourceSchemaDefinition.schemaName(context) }
       },
       additionalProperties: false,
       required: [ 'id', 'name', 'source' ]

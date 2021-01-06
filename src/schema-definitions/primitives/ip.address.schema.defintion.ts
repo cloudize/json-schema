@@ -2,11 +2,11 @@ import { Schema } from 'jsonschema';
 import { IJsonSchemaDefinition } from '../../index';
 
 const IpAddressSchemaDefinition: IJsonSchemaDefinition = class {
-    static schemaName = (): string => '/core.ip.address.schema'
+    static schemaName = (context: any): string => '/core.ip.address.schema'
 
-    static schemaDefinition = (): Schema => ({
+    static schemaDefinition = (context: any): Schema => ({
       $schema: 'http://json-payload-schemas.org/draft-06/payload-schemas#',
-      id: IpAddressSchemaDefinition.schemaName(),
+      id: IpAddressSchemaDefinition.schemaName(context),
       title: 'Schema for an IP Address',
       description: 'Schema for use in the validation of IP Addresses',
       type: 'string',
