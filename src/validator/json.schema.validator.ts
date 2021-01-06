@@ -3,6 +3,8 @@ import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './j
 import {isUndefined} from "@apigames/json";
 
 export default class JsonSchemaValidator {
+    private _context: any = undefined;
+
     private _validator: Validator = undefined;
 
     private _validationErrors: ValidationError[] = undefined;
@@ -13,7 +15,7 @@ export default class JsonSchemaValidator {
         schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction);
       }
 
-      const _schemaDefinition = schemaDefinition.schemaDefinition();
+      const _schemaDefinition = schemaDefinition.schemaDefinition(this._context);
 
       this.validator.addSchema(_schemaDefinition, schemaDefinition.schemaName());
     }
@@ -42,8 +44,9 @@ export default class JsonSchemaValidator {
       return this._validator;
     }
 
-    validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition) => {
+    validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
       this._validationErrors = undefined;
+      this._context = context;
       if (isUndefined(payloadDocument)) {
         this._validationErrors = [new ValidationError('The payload was empty.')];
         return false;
@@ -52,7 +55,7 @@ export default class JsonSchemaValidator {
       this.setupValidator();
       this.setupSchema(schemaDefinition);
 
-      const _schemaDefinition = schemaDefinition.schemaDefinition();
+      const _schemaDefinition = schemaDefinition.schemaDefinition(context);
 
       const validationResult = this.validator.validate(payloadDocument, _schemaDefinition);
 

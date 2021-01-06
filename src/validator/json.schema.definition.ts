@@ -5,6 +5,6 @@ export type SetupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefi
 export interface IJsonSchemaDefinition {
   schemaName(): string;
   setupSchemaDependencies?(registerSchemaFunction: SetupSchemaDependenciesFunction): void;
-  schemaDefinition(): Schema;
+  schemaDefinition(context: any): Schema;
   postSchemaValidation?(payloadDocument: any, validationResult: ValidatorResult): void;
 }
