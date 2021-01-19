@@ -7,30 +7,30 @@ export default class JsonSchemaValidator {
 
     private _validationErrors: ValidationError[] = undefined;
 
-    setupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
-      if (schemaDefinition.setupSchemaDependencies) {
-        const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
-        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction, context);
+    private SetupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
+      if (schemaDefinition.SetupSchemaDependencies) {
+        const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.SetupSchemaDependencies.bind(this);
+        schemaDefinition.SetupSchemaDependencies(setupSchemaDependencyFunction, context);
       }
 
-      const _schemaDefinition = schemaDefinition.schemaDefinition(context);
+      const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
 
-      this.validator.addSchema(_schemaDefinition, schemaDefinition.schemaName(context));
+      this.validator.addSchema(_schemaDefinition, schemaDefinition.SchemaName(context));
     }
 
-    setupSchema = (schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
-      if (schemaDefinition.setupSchemaDependencies) {
-        const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.setupSchemaDependencies.bind(this);
-        schemaDefinition.setupSchemaDependencies(setupSchemaDependencyFunction, context);
+    private SetupSchema = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
+      if (schemaDefinition.SetupSchemaDependencies) {
+        const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.SetupSchemaDependencies.bind(this);
+        schemaDefinition.SetupSchemaDependencies(setupSchemaDependencyFunction, context);
       }
     }
 
-    setupValidator = () => {
-      this.teardownValidator();
+    private SetupValidator = () => {
+      this.TeardownValidator();
       this._validator = new Validator();
     }
 
-    teardownValidator = () => {
+    private TeardownValidator = () => {
       this._validator = undefined;
     }
 
@@ -42,22 +42,22 @@ export default class JsonSchemaValidator {
       return this._validator;
     }
 
-    validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition, context: any = undefined) => {
+    Validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition, context?: any) => {
       this._validationErrors = undefined;
       if (isUndefined(payloadDocument)) {
         this._validationErrors = [new ValidationError('The payload was empty.')];
         return false;
       }
 
-      this.setupValidator();
-      this.setupSchema(schemaDefinition, context);
+      this.SetupValidator();
+      this.SetupSchema(schemaDefinition, context);
 
-      const _schemaDefinition = schemaDefinition.schemaDefinition(context);
+      const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
 
       const validationResult = this.validator.validate(payloadDocument, _schemaDefinition);
 
-      if ((validationResult.valid) && (schemaDefinition.postSchemaValidation)) {
-        schemaDefinition.postSchemaValidation(payloadDocument, validationResult, context);
+      if ((validationResult.valid) && (schemaDefinition.PostSchemaValidation)) {
+        schemaDefinition.PostSchemaValidation(payloadDocument, validationResult, context);
       }
 
       if (!validationResult.valid) {

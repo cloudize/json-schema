@@ -3,7 +3,7 @@
   "author": "API Games Limited",
   "description": "API Games JSON Schema Validation Library",
   "license": "MIT",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -15,18 +15,18 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@apigames/json": "^1.0.42",
+    "@apigames/json": "^1.0.43",
     "deep-equal": "^1.0.1",
     "es6-promise": "^4.2.8",
     "jsonschema": "^1.4.0",
     "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.19",
-    "@types/node": "^14.14.19",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.21",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
-    "eslint": "^7.17.0",
+    "eslint": "^7.18.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",

@@ -2,11 +2,11 @@ import { Schema } from 'jsonschema';
 import { IJsonSchemaDefinition } from '../../index';
 
 const DatetimeSchemaDefinition: IJsonSchemaDefinition = class {
-    static schemaName = (context: any): string => '/core.datetime.schema'
+    static SchemaName = (context: any): string => '/core.datetime.schema'
 
-    static schemaDefinition = (context: any): Schema => ({
+    static SchemaDefinition = (context: any): Schema => ({
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: DatetimeSchemaDefinition.schemaName(context),
+      id: DatetimeSchemaDefinition.SchemaName(context),
       title: 'Schema for a date and time',
       description: 'Schema for use in the validation of an ISO8601 date and time',
       type: 'string',

@@ -10,22 +10,22 @@ let TestSchemaDefinitionContext = undefined;
 let TestSourceSchemaDefinitionContext = undefined;
 
 const TestSourceSchemaDefinition = class {
-  static schemaName = (context) => '/test.source.schema';
+  static SchemaName = (context) => '/test.source.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction, context) {
+  static SetupSchemaDependencies(registerSchemaFunction, context) {
     registerSchemaFunction(IpAddressSchemaDefinition, context);
   };
 
-  static schemaDefinition = (context) => {
+  static SchemaDefinition = (context) => {
     TestSourceSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-        id: TestSourceSchemaDefinition.schemaName(context),
+        id: TestSourceSchemaDefinition.SchemaName(context),
       title: 'Test Source Schema Definition',
       description: 'This class sets up an embedded schema definition for testing',
       type: 'object',
       properties: {
-      ipAddress: { $ref: IpAddressSchemaDefinition.schemaName(context) }
+      ipAddress: { $ref: IpAddressSchemaDefinition.SchemaName(context) }
     },
       additionalProperties: false,
         required: [ 'ipAddress' ]
@@ -34,32 +34,32 @@ const TestSourceSchemaDefinition = class {
 }
 
 const TestSchemaDefinition = class {
-  static schemaName = (context) => '/test.schema';
+  static SchemaName = (context) => '/test.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction, context) {
+  static SetupSchemaDependencies(registerSchemaFunction, context) {
     registerSchemaFunction(UuidSchemaDefinition, context);
     registerSchemaFunction(TestSourceSchemaDefinition, context);
   };
 
-  static schemaDefinition = (context) => {
+  static SchemaDefinition = (context) => {
     TestSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: TestSchemaDefinition.schemaName(context),
+      id: TestSchemaDefinition.SchemaName(context),
       title: 'Test Schema Definition',
       description: 'This class sets up a complex schema definition for testing',
       type: 'object',
       properties: {
-        id: { $ref: UuidSchemaDefinition.schemaName(context) },
+        id: { $ref: UuidSchemaDefinition.SchemaName(context) },
         name: { type: 'string' },
-        source: { $ref: TestSourceSchemaDefinition.schemaName(context) }
+        source: { $ref: TestSourceSchemaDefinition.SchemaName(context) }
       },
       additionalProperties: false,
       required: [ 'id', 'name', 'source' ]
     }
   }
 
-  static postSchemaValidation(payloadDocument, validationResult) {};
+  static PostSchemaValidation(payloadDocument, validationResult) {};
 }
 
 describe('The Test Schema Validator', () => {
@@ -68,7 +68,7 @@ describe('The Test Schema Validator', () => {
       TestSchemaDefinitionContext = undefined;
       TestSourceSchemaDefinitionContext = undefined;
       const payloadValidator = new JsonSchemaValidator();
-      expect(payloadValidator.validate({}, TestSchemaDefinition)).toBe(false);
+      expect(payloadValidator.Validate({}, TestSchemaDefinition)).toBe(false);
       expect(payloadValidator.validationErrors).toBeDefined();
     });
 
@@ -83,7 +83,7 @@ describe('The Test Schema Validator', () => {
       }
       const context = {};
 
-      expect(payloadValidator.validate(payload, TestSchemaDefinition, context)).toBe(false);
+      expect(payloadValidator.Validate(payload, TestSchemaDefinition, context)).toBe(false);
       expect(TestSchemaDefinitionContext).toBe(context)
       expect(TestSourceSchemaDefinitionContext).toBe(context)
       expect(payloadValidator.validationErrors).toBeDefined();
@@ -105,13 +105,13 @@ describe('The Test Schema Validator', () => {
       }
       const context = {};
 
-      TestSchemaDefinition.postSchemaValidation = jest.fn();
+      TestSchemaDefinition.PostSchemaValidation = jest.fn();
 
-      expect(payloadValidator.validate(payload, TestSchemaDefinition, context)).toBe(true);
+      expect(payloadValidator.Validate(payload, TestSchemaDefinition, context)).toBe(true);
       expect(TestSchemaDefinitionContext).toBe(context)
       expect(TestSourceSchemaDefinitionContext).toBe(context)
       expect(payloadValidator.validationErrors).toBeUndefined();
-      expect(TestSchemaDefinition.postSchemaValidation).toHaveBeenCalled();
+      expect(TestSchemaDefinition.PostSchemaValidation).toHaveBeenCalled();
     });
   });
 });

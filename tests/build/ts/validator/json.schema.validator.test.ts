@@ -12,22 +12,22 @@ let TestSourceSchemaDefinitionContext = undefined;
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
-  static schemaName = (context: any): string => '/test.source.schema';
+  static SchemaName = (context: any): string => '/test.source.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
+  static SetupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
     registerSchemaFunction(IpAddressSchemaDefinition, context);
   };
 
-  static schemaDefinition = (context: any): Schema => {
+  static SchemaDefinition = (context: any): Schema => {
     TestSourceSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: TestSourceSchemaDefinition.schemaName(context),
+      id: TestSourceSchemaDefinition.SchemaName(context),
       title: 'Test Source Schema Definition',
       description: 'This class sets up an embedded schema definition for testing',
       type: 'object',
       properties: {
-        ipAddress: { $ref: IpAddressSchemaDefinition.schemaName(context) }
+        ipAddress: { $ref: IpAddressSchemaDefinition.SchemaName(context) }
       },
       additionalProperties: false,
       required: [ 'ipAddress' ]
@@ -37,32 +37,32 @@ const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSchemaDefinition: IJsonSchemaDefinition = class {
-  static schemaName = (context: any): string => '/test.schema';
+  static SchemaName = (context: any): string => '/test.schema';
 
-  static setupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
+  static SetupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
     registerSchemaFunction(UuidSchemaDefinition, context);
     registerSchemaFunction(TestSourceSchemaDefinition, context);
   };
 
-  static schemaDefinition = (context: any): Schema => {
+  static SchemaDefinition = (context: any): Schema => {
     TestSchemaDefinitionContext = context;
     return {
       $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: TestSchemaDefinition.schemaName(context),
+      id: TestSchemaDefinition.SchemaName(context),
       title: 'Test Schema Definition',
       description: 'This class sets up a complex schema definition for testing',
       type: 'object',
       properties: {
-        id: { $ref: UuidSchemaDefinition.schemaName(context) },
+        id: { $ref: UuidSchemaDefinition.SchemaName(context) },
         name: { type: 'string' },
-        source: { $ref: TestSourceSchemaDefinition.schemaName(context) }
+        source: { $ref: TestSourceSchemaDefinition.SchemaName(context) }
       },
       additionalProperties: false,
       required: [ 'id', 'name', 'source' ]
     }
   }
 
-  static postSchemaValidation(payloadDocument: any, validationResult: ValidatorResult): void {};
+  static PostSchemaValidation(payloadDocument: any, validationResult: ValidatorResult): void {};
 }
 
 describe('The Test Schema Validator', () => {
@@ -71,7 +71,7 @@ describe('The Test Schema Validator', () => {
       TestSchemaDefinitionContext = undefined;
       TestSourceSchemaDefinitionContext = undefined;
       const payloadValidator = new JsonSchemaValidator();
-      expect(payloadValidator.validate({}, TestSchemaDefinition)).toBe(false);
+      expect(payloadValidator.Validate({}, TestSchemaDefinition)).toBe(false);
       expect(payloadValidator.validationErrors).toBeDefined();
     });
 
@@ -86,7 +86,7 @@ describe('The Test Schema Validator', () => {
       }
       const context = {};
 
-      expect(payloadValidator.validate(payload, TestSchemaDefinition, context)).toBe(false);
+      expect(payloadValidator.Validate(payload, TestSchemaDefinition, context)).toBe(false);
       expect(TestSchemaDefinitionContext).toBe(context)
       expect(TestSourceSchemaDefinitionContext).toBe(context)
       expect(payloadValidator.validationErrors).toBeDefined();
@@ -108,13 +108,13 @@ describe('The Test Schema Validator', () => {
       }
       const context = {};
 
-      TestSchemaDefinition.postSchemaValidation = jest.fn();
+      TestSchemaDefinition.PostSchemaValidation = jest.fn();
 
-      expect(payloadValidator.validate(payload, TestSchemaDefinition, context)).toBe(true);
+      expect(payloadValidator.Validate(payload, TestSchemaDefinition, context)).toBe(true);
       expect(TestSchemaDefinitionContext).toBe(context)
       expect(TestSourceSchemaDefinitionContext).toBe(context)
       expect(payloadValidator.validationErrors).toBeUndefined();
-      expect(TestSchemaDefinition.postSchemaValidation).toHaveBeenCalled();
+      expect(TestSchemaDefinition.PostSchemaValidation).toHaveBeenCalled();
     });
   });
 });
