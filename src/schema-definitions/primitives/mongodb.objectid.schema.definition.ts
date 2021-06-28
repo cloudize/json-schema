@@ -16,6 +16,6 @@ const MongodbObjectidSchemaDefinition: IJsonSchemaDefinition = class {
       maxLength: 24,
       pattern: regex,
     })
-}
+};
 
 export default MongodbObjectidSchemaDefinition;

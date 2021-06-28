@@ -38,6 +38,6 @@ const GeolocationPointSchemaDefinition: IJsonSchemaDefinition = class {
       additionalProperties: false,
       required: ['type', 'coordinates'],
     })
-}
+};
 
 export default GeolocationPointSchemaDefinition;

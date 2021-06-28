@@ -1,22 +1,24 @@
+// eslint-disable-next-line max-classes-per-file
 import { Schema, ValidatorResult } from 'jsonschema';
 import {
   IJsonSchemaDefinition,
   JsonSchemaValidator,
   UuidSchemaDefinition,
-  IpAddressSchemaDefinition
+  IpAddressSchemaDefinition,
 } from '../../../../lib';
 import { SetupSchemaDependenciesFunction } from '../../../../lib/validator/json.schema.definition';
 
-let TestSchemaDefinitionContext = undefined;
-let TestSourceSchemaDefinitionContext = undefined;
+let TestSchemaDefinitionContext;
+let TestSourceSchemaDefinitionContext;
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
+  // eslint-disable-next-line no-unused-vars
   static SchemaName = (context: any): string => '/test.source.schema';
 
   static SetupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
     registerSchemaFunction(IpAddressSchemaDefinition, context);
-  };
+  }
 
   static SchemaDefinition = (context: any): Schema => {
     TestSourceSchemaDefinitionContext = context;
@@ -27,22 +29,23 @@ const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
       description: 'This class sets up an embedded schema definition for testing',
       type: 'object',
       properties: {
-        ipAddress: { $ref: IpAddressSchemaDefinition.SchemaName(context) }
+        ipAddress: { $ref: IpAddressSchemaDefinition.SchemaName(context) },
       },
       additionalProperties: false,
-      required: [ 'ipAddress' ]
-    }
+      required: ['ipAddress'],
+    };
   }
-}
+};
 
 // eslint-disable-next-line import/prefer-default-export
 const TestSchemaDefinition: IJsonSchemaDefinition = class {
+  // eslint-disable-next-line no-unused-vars
   static SchemaName = (context: any): string => '/test.schema';
 
   static SetupSchemaDependencies(registerSchemaFunction: SetupSchemaDependenciesFunction, context: any): void {
     registerSchemaFunction(UuidSchemaDefinition, context);
     registerSchemaFunction(TestSourceSchemaDefinition, context);
-  };
+  }
 
   static SchemaDefinition = (context: any): Schema => {
     TestSchemaDefinitionContext = context;
@@ -55,15 +58,16 @@ const TestSchemaDefinition: IJsonSchemaDefinition = class {
       properties: {
         id: { $ref: UuidSchemaDefinition.SchemaName(context) },
         name: { type: 'string' },
-        source: { $ref: TestSourceSchemaDefinition.SchemaName(context) }
+        source: { $ref: TestSourceSchemaDefinition.SchemaName(context) },
       },
       additionalProperties: false,
-      required: [ 'id', 'name', 'source' ]
-    }
+      required: ['id', 'name', 'source'],
+    };
   }
 
-  static PostSchemaValidation(payloadDocument: any, validationResult: ValidatorResult): void {};
-}
+  // eslint-disable-next-line no-unused-vars
+  static PostSchemaValidation(payloadDocument: any, validationResult: ValidatorResult): void {}
+};
 
 describe('The Test Schema Validator', () => {
   describe('should return false for', () => {
@@ -82,13 +86,13 @@ describe('The Test Schema Validator', () => {
       const payload = {
         id: 'x',
         name: 5,
-        extended: false
-      }
+        extended: false,
+      };
       const context = {};
 
       expect(payloadValidator.Validate(payload, TestSchemaDefinition, context)).toBe(false);
-      expect(TestSchemaDefinitionContext).toBe(context)
-      expect(TestSourceSchemaDefinitionContext).toBe(context)
+      expect(TestSchemaDefinitionContext).toBe(context);
+      expect(TestSourceSchemaDefinitionContext).toBe(context);
       expect(payloadValidator.validationErrors).toBeDefined();
       expect(payloadValidator.validationErrors.length).toBe(5);
     });
@@ -103,16 +107,16 @@ describe('The Test Schema Validator', () => {
         id: '01234567-89ab-cdef-0123-456789abcdef',
         name: 'Bob Smith',
         source: {
-          ipAddress: '127.0.0.1'
-        }
-      }
+          ipAddress: '127.0.0.1',
+        },
+      };
       const context = {};
 
       TestSchemaDefinition.PostSchemaValidation = jest.fn();
 
       expect(payloadValidator.Validate(payload, TestSchemaDefinition, context)).toBe(true);
-      expect(TestSchemaDefinitionContext).toBe(context)
-      expect(TestSourceSchemaDefinitionContext).toBe(context)
+      expect(TestSchemaDefinitionContext).toBe(context);
+      expect(TestSourceSchemaDefinitionContext).toBe(context);
       expect(payloadValidator.validationErrors).toBeUndefined();
       expect(TestSchemaDefinition.PostSchemaValidation).toHaveBeenCalled();
     });

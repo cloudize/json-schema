@@ -31,8 +31,8 @@ const DatetimeSchemaDefinition: IJsonSchemaDefinition = class {
         + '(-(((0[0-9]|1[0-1])[:]?[0-5][0-9])|(12[:]?00)))' // Western Timezones
         + '|'
         + '(\\+(((0[0-9]|1[0-3])[:]?[0-5][0-9])|(14[:]?00)))' // Eastern Timezones
-        + ')$'
+        + ')$',
     });
-}
+};
 
 export default DatetimeSchemaDefinition;

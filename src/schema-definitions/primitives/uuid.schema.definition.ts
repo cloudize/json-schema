@@ -19,6 +19,6 @@ const UuidSchemaDefinition: IJsonSchemaDefinition = class {
         pattern: regex,
       };
     }
-}
+};
 
 export default UuidSchemaDefinition;

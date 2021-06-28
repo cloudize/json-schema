@@ -15,6 +15,6 @@ const UrlSchemaDefinition: IJsonSchemaDefinition = class {
       type: 'string',
       pattern: regex,
     })
-}
+};
 
 export default UrlSchemaDefinition;

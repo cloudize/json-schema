@@ -16,6 +16,6 @@ const EmailAddressSchemaDefinition: IJsonSchemaDefinition = class {
       minLength: 3,
       pattern: regex,
     })
-}
+};
 
 export default EmailAddressSchemaDefinition;

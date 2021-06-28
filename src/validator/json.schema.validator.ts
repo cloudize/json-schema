@@ -1,6 +1,6 @@
 import { ValidationError, Validator } from 'jsonschema';
+import { isUndefined } from '@apigames/json';
 import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
-import {isUndefined} from "@apigames/json";
 
 export default class JsonSchemaValidator {
     private _validator: Validator = undefined;
@@ -13,6 +13,7 @@ export default class JsonSchemaValidator {
         schemaDefinition.SetupSchemaDependencies(setupSchemaDependencyFunction, context);
       }
 
+      // eslint-disable-next-line no-underscore-dangle
       const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
 
       this.validator.addSchema(_schemaDefinition, schemaDefinition.SchemaName(context));
@@ -42,7 +43,7 @@ export default class JsonSchemaValidator {
       return this._validator;
     }
 
-    Validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition, context?: any) => {
+    Validate = (payloadDocument: any, schemaDefinition: IJsonSchemaDefinition, context?: any): boolean => {
       this._validationErrors = undefined;
       if (isUndefined(payloadDocument)) {
         this._validationErrors = [new ValidationError('The payload was empty.')];
@@ -52,6 +53,7 @@ export default class JsonSchemaValidator {
       this.SetupValidator();
       this.SetupSchema(schemaDefinition, context);
 
+      // eslint-disable-next-line no-underscore-dangle
       const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
 
       const validationResult = this.validator.validate(payloadDocument, _schemaDefinition);
