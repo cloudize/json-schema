@@ -3,7 +3,7 @@
   "author": "API Games Limited",
   "description": "API Games JSON Schema Validation Library",
   "license": "MIT",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -19,7 +19,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@apigames/json": "1.0.52",
+    "@apigames/json": "1.0.54",
     "deep-equal": "2.0.5",
     "es6-promise": "4.2.8",
     "jsonschema": "1.4.0",
