@@ -71,6 +71,14 @@ const TestSchemaDefinition: IJsonSchemaDefinition = class {
 
 describe('The Test Schema Validator', () => {
   describe('should return false for', () => {
+    it('an undefined object', () => {
+      TestSchemaDefinitionContext = undefined;
+      TestSourceSchemaDefinitionContext = undefined;
+      const payloadValidator = new JsonSchemaValidator();
+      expect(payloadValidator.Validate(undefined, TestSchemaDefinition)).toBe(false);
+      expect(payloadValidator.validationErrors).toBeDefined();
+    });
+
     it('an empty object', () => {
       TestSchemaDefinitionContext = undefined;
       TestSourceSchemaDefinitionContext = undefined;
