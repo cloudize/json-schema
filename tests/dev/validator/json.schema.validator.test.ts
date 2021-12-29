@@ -34,7 +34,7 @@ const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
       additionalProperties: false,
       required: ['ipAddress'],
     };
-  }
+  };
 };
 
 // eslint-disable-next-line import/prefer-default-export
@@ -63,7 +63,7 @@ const TestSchemaDefinition: IJsonSchemaDefinition = class {
       additionalProperties: false,
       required: ['id', 'name', 'source'],
     };
-  }
+  };
 
   // eslint-disable-next-line no-unused-vars
   static PostSchemaValidation(payloadDocument: any, validationResult: ValidatorResult): void {}

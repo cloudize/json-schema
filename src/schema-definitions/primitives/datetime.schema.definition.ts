@@ -2,17 +2,18 @@ import { Schema } from 'jsonschema';
 import { IJsonSchemaDefinition } from '../../index';
 
 const DatetimeSchemaDefinition: IJsonSchemaDefinition = class {
-    static SchemaName = (context: any): string => '/core.datetime.schema'
+  // eslint-disable-next-line no-unused-vars
+  static SchemaName = (context: any): string => '/core.datetime.schema';
 
-    static SchemaDefinition = (context: any): Schema => ({
-      $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
-      id: DatetimeSchemaDefinition.SchemaName(context),
-      title: 'Schema for a date and time',
-      description: 'Schema for use in the validation of an ISO8601 date and time',
-      type: 'string',
-      minLength: 22,
-      maxLength: 29,
-      pattern: '^([1-2][0-9]{3})' // year
+  static SchemaDefinition = (context: any): Schema => ({
+    $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
+    id: DatetimeSchemaDefinition.SchemaName(context),
+    title: 'Schema for a date and time',
+    description: 'Schema for use in the validation of an ISO8601 date and time',
+    type: 'string',
+    minLength: 22,
+    maxLength: 29,
+    pattern: '^([1-2][0-9]{3})' // year
         + '(-)' // date separator
         + '((0[1-9])|(1[0-2]))' // month
         + '(-)' // date separator
@@ -32,7 +33,7 @@ const DatetimeSchemaDefinition: IJsonSchemaDefinition = class {
         + '|'
         + '(\\+(((0[0-9]|1[0-3])[:]?[0-5][0-9])|(14[:]?00)))' // Eastern Timezones
         + ')$',
-    });
+  });
 };
 
 export default DatetimeSchemaDefinition;

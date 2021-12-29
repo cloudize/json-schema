@@ -1,5 +1,6 @@
 import { Schema, ValidatorResult } from 'jsonschema';
 
+// eslint-disable-next-line no-use-before-define
 export type SetupSchemaDependenciesFunction = (schemaDefinition: IJsonSchemaDefinition, context: any) => void;
 
 export interface IJsonSchemaDefinition {
