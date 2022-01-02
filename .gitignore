@@ -65,5 +65,6 @@ typings/
 
 # Webstorm config and coverage files
 .idea
+publishCodeCoverage.sh
 coverage/
 lib/
