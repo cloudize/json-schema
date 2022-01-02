@@ -14,16 +14,16 @@ This package includes a set of capabilities that provide the ability to validate
 
 ## List of features
 
-* Provides a validator class that can validate an object against a nested schema definition
+*  Provides a validator class that can validate an object against a nested schema definition
 
-* Provides core schema definitions of common element types, including:
-  * ISO8601 Date Times
-  * Email Addresses
-  * Geo Location Points
-  * IP Addresses
-  * MongoDB ObjectIDs
-  * URLs
-  * UUIDs
+*  Provides core schema definitions of common element types, including:
+   *  ISO8601 Date Times
+   *  Email Addresses
+   *  Geo Location Points
+   *  IP Addresses
+   *  MongoDB ObjectIDs
+   *  URLs
+   *  UUIDs
 
 ## Download & Installation
 
