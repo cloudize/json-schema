@@ -5,8 +5,8 @@ import {
   JsonSchemaValidator,
   UuidSchemaDefinition,
   IpAddressSchemaDefinition,
+  SetupSchemaDependenciesFunction,
 } from '../../../../lib';
-import { SetupSchemaDependenciesFunction } from '../../../../lib/validator/json.schema.definition';
 
 let TestSchemaDefinitionContext;
 let TestSourceSchemaDefinitionContext;

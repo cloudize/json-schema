@@ -152,6 +152,18 @@ describe('System Type IP Address validator', () => {
       expect(payloadValidator.validationErrors).toBeUndefined();
     });
 
+    it('01.1.1.1', () => {
+      const payloadValidator = new JsonSchemaValidator();
+      expect(payloadValidator.Validate('01.1.1.1', IpAddressSchemaDefinition)).toBe(true);
+      expect(payloadValidator.validationErrors).toBeUndefined();
+    });
+
+    it('1.1.1.01', () => {
+      const payloadValidator = new JsonSchemaValidator();
+      expect(payloadValidator.Validate('1.1.1.01', IpAddressSchemaDefinition)).toBe(true);
+      expect(payloadValidator.validationErrors).toBeUndefined();
+    });
+
     it('192.168.1.1', () => {
       const payloadValidator = new JsonSchemaValidator();
       expect(payloadValidator.Validate('192.168.1.1', IpAddressSchemaDefinition)).toBe(true);
@@ -173,12 +185,6 @@ describe('System Type IP Address validator', () => {
     it('0.0.0.0', () => {
       const payloadValidator = new JsonSchemaValidator();
       expect(payloadValidator.Validate('0.0.0.0', IpAddressSchemaDefinition)).toBe(true);
-      expect(payloadValidator.validationErrors).toBeUndefined();
-    });
-
-    it('1.1.1.01', () => {
-      const payloadValidator = new JsonSchemaValidator();
-      expect(payloadValidator.Validate('1.1.1.01', IpAddressSchemaDefinition)).toBe(true);
       expect(payloadValidator.validationErrors).toBeUndefined();
     });
 
