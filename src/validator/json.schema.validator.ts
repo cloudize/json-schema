@@ -1,5 +1,5 @@
 import { ValidationError, Validator } from 'jsonschema';
-import { isUndefined } from '@apigames/json';
+import { isDefined, isUndefined } from '@apigames/json';
 import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
@@ -7,11 +7,15 @@ export default class JsonSchemaValidator {
 
   private _validationErrors: ValidationError[] = undefined;
 
-  private SetupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
-    if (schemaDefinition.SetupSchemaDependencies) {
+  private CallSchemaDefinitionsSetupSchemaDependencies(schemaDefinition: IJsonSchemaDefinition, context?: any) {
+    if (isDefined(schemaDefinition.SetupSchemaDependencies)) {
       const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.SetupSchemaDependencies.bind(this);
       schemaDefinition.SetupSchemaDependencies(setupSchemaDependencyFunction, context);
     }
+  }
+
+  private SetupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
+    this.CallSchemaDefinitionsSetupSchemaDependencies(schemaDefinition, context);
 
     // eslint-disable-next-line no-underscore-dangle
     const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
@@ -20,10 +24,7 @@ export default class JsonSchemaValidator {
   };
 
   private SetupSchema = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
-    if (schemaDefinition.SetupSchemaDependencies) {
-      const setupSchemaDependencyFunction: SetupSchemaDependenciesFunction = this.SetupSchemaDependencies.bind(this);
-      schemaDefinition.SetupSchemaDependencies(setupSchemaDependencyFunction, context);
-    }
+    this.CallSchemaDefinitionsSetupSchemaDependencies(schemaDefinition, context);
   };
 
   private SetupValidator = () => {
