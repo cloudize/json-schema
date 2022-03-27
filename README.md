@@ -1,8 +1,8 @@
 # API Games JSON Schema Validation Library
 
 ![](https://img.shields.io/badge/build-passing-brightgreen)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/934ae25757b64abcb3fa83fe01651601)](https://www.codacy.com/gh/apigames-public/json-schema/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apigames-public/json-schema&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/934ae25757b64abcb3fa83fe01651601)](https://www.codacy.com/gh/apigames-public/json-schema/dashboard?utm_source=github.com&utm_medium=referral&utm_content=apigames-public/json-schema&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3f0e2c3f1999493daf8ed448c2afb0f1)](https://www.codacy.com/gh/apigames-core/json-schema/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apigames-core/json-schema&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/3f0e2c3f1999493daf8ed448c2afb0f1)](https://www.codacy.com/gh/apigames-core/json-schema/dashboard?utm_source=github.com&utm_medium=referral&utm_content=apigames-core/json-schema&utm_campaign=Badge_Coverage)
 ![](https://img.shields.io/npm/v/@apigames/json-schema)
 ![](https://img.shields.io/badge/license-MIT-blue)
 
