@@ -1,5 +1,5 @@
 import { ValidationError, Validator } from 'jsonschema';
-import { isDefined, isUndefined } from '@apigames/json';
+import { isDefined, isUndefined } from '@cloudize/json';
 import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
