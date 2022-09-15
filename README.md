@@ -1,12 +1,12 @@
-# API Games JSON Schema Validation Library
+# Cloudize JSON Schema Validation Library
 
 ![](https://img.shields.io/badge/build-passing-brightgreen)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3f0e2c3f1999493daf8ed448c2afb0f1)](https://www.codacy.com/gh/apigames-core/json-schema/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apigames-core/json-schema&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/3f0e2c3f1999493daf8ed448c2afb0f1)](https://www.codacy.com/gh/apigames-core/json-schema/dashboard?utm_source=github.com&utm_medium=referral&utm_content=apigames-core/json-schema&utm_campaign=Badge_Coverage)
-![](https://img.shields.io/npm/v/@apigames/json-schema)
+![](https://img.shields.io/npm/v/@cloudize/json-schema)
 ![](https://img.shields.io/badge/license-MIT-blue)
 
-JSON Schema Validation Library for the API Games Platform and SDKs.
+JSON Schema Validation Library for the Cloudize Platform and SDKs.
 
 * * *
 
@@ -28,7 +28,7 @@ This package includes a set of capabilities that provide the ability to validate
 ## Download & Installation
 
 ```shell 
-$ npm i @apigames/json-schema
+$ npm i @cloudize/json-schema
 ```
 
 ## Authors or Acknowledgments

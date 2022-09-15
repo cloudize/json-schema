@@ -1,5 +1,5 @@
 {
-  "name": "@apigames/json-schema",
+  "name": "@cloudize/json-schema",
   "author": {
     "name" : "API Games Limited",
     "email" : "hello@api.games",
@@ -11,7 +11,7 @@
       "email" : "erich.kuba@api.games"
     }
   ],
-  "description": "API Games JSON Schema Validation Library",
+  "description": "Cloudize JSON Schema Validation Library",
   "license": "MIT",
   "version": "22.1.13",
   "main": "lib/index.js",
@@ -33,7 +33,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@apigames/json": "22.1.14",
+    "@cloudize/json": "22.1.15",
     "deep-equal": "2.0.5",
     "es6-promise": "4.2.8",
     "jsonschema": "1.4.1",
@@ -57,10 +57,10 @@
   "eslintConfig": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apigames-core/json-schema.git"
+    "url": "git+https://github.com/cloudize/json-schema.git"
   },
   "bugs": {
-    "url": "https://github.com/apigames-core/json-schema/issues"
+    "url": "https://github.com/cloudize/json-schema/issues"
   },
-  "homepage": "https://github.com/apigames-core/json-schema#readme"
+  "homepage": "https://github.com/cloudize/json-schema#readme"
 }
