@@ -10,7 +10,7 @@ const UuidSchemaDefinition: IJsonSchemaDefinition = class {
 
   static SchemaDefinition(context: any): Schema {
     return {
-      $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
+      $schema: 'http://json-schema.org/draft-06/schema#',
       id: UuidSchemaDefinition.SchemaName(context),
       title: 'Schema for a UUID',
       description: 'Schema for use in the validation of a UUID',
