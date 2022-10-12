@@ -9,7 +9,7 @@ const EmailAddressSchemaDefinition: IJsonSchemaDefinition = class {
   static SchemaName = (context: any): string => '/core.email.address.schema';
 
   static SchemaDefinition = (context: any): Schema => ({
-    $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
+    $schema: 'http://json-schema.org/draft-06/schema#',
     id: EmailAddressSchemaDefinition.SchemaName(context),
     title: 'Schema for an email address',
     description: 'Schema for use in the validation of the email address',

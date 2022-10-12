@@ -8,7 +8,7 @@ const MongodbObjectidSchemaDefinition: IJsonSchemaDefinition = class {
   static SchemaName = (context: any): string => '/core.mongodb.objectid.schema';
 
   static SchemaDefinition = (context: any): Schema => ({
-    $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
+    $schema: 'http://json-schema.org/draft-06/schema#',
     id: MongodbObjectidSchemaDefinition.SchemaName(context),
     title: 'Schema for a MongoDB ObjectId',
     description: 'Schema for use in the validation of a MongoDB ObjectId',

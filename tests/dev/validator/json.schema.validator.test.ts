@@ -23,7 +23,7 @@ const TestSourceSchemaDefinition: IJsonSchemaDefinition = class {
   static SchemaDefinition = (context: any): Schema => {
     TestSourceSchemaDefinitionContext = context;
     return {
-      $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
+      $schema: 'http://json-schema.org/draft-06/schema#',
       id: TestSourceSchemaDefinition.SchemaName(context),
       title: 'Test Source Schema Definition',
       description: 'This class sets up an embedded schema definition for testing',
@@ -50,7 +50,7 @@ const TestSchemaDefinition: IJsonSchemaDefinition = class {
   static SchemaDefinition = (context: any): Schema => {
     TestSchemaDefinitionContext = context;
     return {
-      $schema: 'http://json-document-schemas.org/draft-06/document-schemas#',
+      $schema: 'http://json-schema.org/draft-06/schema#',
       id: TestSchemaDefinition.SchemaName(context),
       title: 'Test Schema Definition',
       description: 'This class sets up a complex schema definition for testing',
