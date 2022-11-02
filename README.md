@@ -33,7 +33,7 @@ $ npm i @apigames/json-schema
 
 ## Authors or Acknowledgments
 
-*   API Games Limited
+*   Cloudize Limited
 
 ## License
 
