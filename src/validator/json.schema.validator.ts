@@ -1,5 +1,7 @@
 import { ValidationError, Validator } from 'jsonschema';
-import { isDefined, isUndefined } from '@cloudize/json';
+import {
+  hasProperty, isDefined, isFalse, isUndefined,
+} from '@cloudize/json';
 import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
@@ -15,12 +17,14 @@ export default class JsonSchemaValidator {
   }
 
   private SetupSchemaDependencies = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
-    this.CallSchemaDefinitionsSetupSchemaDependencies(schemaDefinition, context);
+    if (isFalse(hasProperty(this.validator.schemas, schemaDefinition.SchemaName(context)))) {
+      // eslint-disable-next-line no-underscore-dangle
+      const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
 
-    // eslint-disable-next-line no-underscore-dangle
-    const _schemaDefinition = schemaDefinition.SchemaDefinition(context);
+      this.validator.addSchema(_schemaDefinition, schemaDefinition.SchemaName(context));
 
-    this.validator.addSchema(_schemaDefinition, schemaDefinition.SchemaName(context));
+      this.CallSchemaDefinitionsSetupSchemaDependencies(schemaDefinition, context);
+    }
   };
 
   private SetupSchema = (schemaDefinition: IJsonSchemaDefinition, context?: any) => {
