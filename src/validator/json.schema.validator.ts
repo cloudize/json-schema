@@ -1,7 +1,7 @@
 import { ValidationError, Validator } from 'jsonschema';
-import {
-  hasProperty, isDefined, isFalse, isUndefined,
-} from '@apigames/json';
+import { isDefined, isUndefined } from '@apigames/json/lib/common';
+import { isFalse } from '@apigames/json/lib/boolean';
+import { hasProperty } from '@apigames/json/lib/object';
 import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
