@@ -1,7 +1,7 @@
 import { ValidationError, Validator } from 'jsonschema';
-import {
-  hasProperty, isDefined, isFalse, isUndefined,
-} from '@cloudize/json';
+import { isDefined, isUndefined } from '@cloudize/json/lib/common';
+import { isFalse } from '@cloudize/json/lib/boolean';
+import { hasProperty } from '@cloudize/json/lib/object';
 import type { IJsonSchemaDefinition, SetupSchemaDependenciesFunction } from './json.schema.definition';
 
 export default class JsonSchemaValidator {
