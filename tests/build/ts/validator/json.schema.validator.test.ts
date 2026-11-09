@@ -1,4 +1,4 @@
-// eslint-disable-next-line max-classes-per-file
+/* eslint-disable max-classes-per-file */
 import { Schema, ValidatorResult } from 'jsonschema';
 import {
   IJsonSchemaDefinition,

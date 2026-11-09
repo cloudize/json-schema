@@ -1,7 +1,8 @@
-export { Schema as JsonSchema, ValidationError as JsonSchemaValidationError } from 'jsonschema';
+export { type Schema as JsonSchema, ValidationError as JsonSchemaValidationError } from 'jsonschema';
 
-export { IJsonSchemaDefinition, JsonSchemaValidator, SetupSchemaDependenciesFunction } from './validator';
+export { type IJsonSchemaDefinition, JsonSchemaValidator, type SetupSchemaDependenciesFunction } from './validator';
 
+// eslint-disable-next-line import/no-cycle
 export {
   DatetimeSchemaDefinition,
   EmailAddressSchemaDefinition,

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { Schema } from 'jsonschema';
 import { IJsonSchemaDefinition } from '../../index';
 
